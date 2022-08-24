@@ -1,0 +1,202 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class MainClass {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		//System.out.println(MobilePhone.getAllMobilePhone().size());
+		MobilePhone m1 = new MobilePhone("Michael G. Scott");
+		MobilePhone m2 = new MobilePhone("Dwight K. Schrute");
+		MobilePhone m3 = new MobilePhone("Jimothy D. Halpert");
+		
+		while (true) {
+			System.out.println("Select mobile phone owner:");
+			for (int i = 0; i <= MobilePhone.getAllMobilePhone().size()-1; i++ ) {
+				System.out.println((i+1) + ". " + MobilePhone.getAllMobilePhone().get(i).getOwner());
+			}
+			int owner_option = scanner.nextInt();
+			System.out.println("\nMobile phone agenda for " + MobilePhone.getAllMobilePhone().get(owner_option-1).getOwner() + " was opened. Please select option:");
+			while (true) {
+				System.out.println("0. Quit;\n1. Print list of contacts;\n2. Add new contact;\n3. Update existing contact;\n4. Remove contact;\n5. Search/find contact.");
+				int menu_option = scanner.nextInt();
+				if(menu_option == 0) {
+					System.out.println("Mobile phone agenda for " + MobilePhone.getAllMobilePhone().get(owner_option-1).getOwner() + " was closed");
+					break;
+				}
+				else if(menu_option == 1) {
+					printContacts(owner_option-1);
+				}
+				else if (menu_option == 2) {
+					System.out.println("Type new contact name: ");
+					String contact_name = scanner.next();
+					System.out.println("Type new contact number: ");
+					String contact_number = scanner.next();
+					new Contacts(MobilePhone.getAllMobilePhone().get(owner_option-1), contact_name, contact_number);
+					}
+				else if (menu_option == 3) {
+					System.out.println("\nWhat contact do you want to edit?");
+					for (int i = 0; i <= MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().size()-1; i++ ) {
+						System.out.println((i+1) + ". " + MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().get(i).getContactName());
+						System.out.println(MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().get(i).getContactNumber());
+					}
+					int update_option = scanner.nextInt();
+					System.out.println("Type the new name of the contact");
+					String contact_name = scanner.next();
+					System.out.println("Type the new number of the contact");
+					String contact_number = scanner.next();
+					MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().get(update_option - 1).setContactName(contact_name);
+					MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().get(update_option - 1).setContactNumber(contact_number);
+
+				}
+				else if (menu_option == 4) {
+					System.out.println("What contact do you want to remove?");
+					for (int i = 0; i <= MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().size()-1; i++ ) {
+						System.out.println((i+1) + ". " + MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().get(i).getContactName());
+						System.out.println(MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().get(i).getContactNumber());
+					}
+					int remove_option = scanner.nextInt();
+					MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().remove(remove_option - 1);
+				}
+				else if(menu_option == 5) {
+					System.out.println("What contact are you searching?");
+					String contact_name = scanner.next();
+					for (int i = 0; i <= MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().size()-1; i++ ) {
+						if (MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().get(i).getContactName().equals(contact_name)) {
+							System.out.println(MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().get(i).getContactName());
+							System.out.println(MobilePhone.getAllMobilePhone().get(owner_option-1).getMyContacts().get(i).getContactNumber());
+						}
+					}
+				}
+			}
+		}
+
+	}	
+	
+	public static void printContacts(int owner) {
+		if (MobilePhone.getAllMobilePhone().get(owner).getMyContacts().size() == 0) {
+			System.out.println(MobilePhone.getAllMobilePhone().get(owner).getOwner() + " has no contacts in the agenda.\n");
+		}
+		else {
+			for (int i = 0; i < MobilePhone.getAllMobilePhone().get(owner).getMyContacts().size(); i++) {
+				System.out.println("\nContact " + (i+1) + ":");
+				System.out.println(MobilePhone.getAllMobilePhone().get(owner).getMyContacts().get(i).getContactName());
+				System.out.println(MobilePhone.getAllMobilePhone().get(owner).getMyContacts().get(i).getContactNumber());
+				System.out.println("==========================================");
+			}
+		}
+			
+	}
+}
+
+
+import java.util.ArrayList;
+public class MobilePhone {
+	private String owner;
+	private static ArrayList <MobilePhone> allMobilePhone = new ArrayList <MobilePhone>();
+	private ArrayList <Contacts> myContacts = new ArrayList <Contacts>();
+	
+	public MobilePhone(String owner) {
+		if(MobilePhone.getAllMobilePhone().size() > 0) {
+			for (int i = 0; i < MobilePhone.getAllMobilePhone().size() ; i++) {
+				if (MobilePhone.getAllMobilePhone().get(i).getOwner() == owner) {
+					System.out.println(owner + " already has a mobile phone agenda");
+					break;
+				}
+				if (i == MobilePhone.getAllMobilePhone().size()-1 ) {
+					this.owner = owner;
+					System.out.println(owner + " added");
+					MobilePhone.addMobilePhone(this);
+
+					break;
+				}
+			}	
+		} 
+		else {
+			this.owner = owner;
+			System.out.println(owner + " added");
+			MobilePhone.addMobilePhone(this);
+			
+		}
+
+	}
+	
+	public void addContact(Contacts contact) {
+		this.myContacts.add(contact);
+	}
+	
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public static ArrayList<MobilePhone> getAllMobilePhone() {
+		return allMobilePhone;
+	}
+
+	public static void setAllMobilePhone(ArrayList<MobilePhone> allMobilePhone) {
+		MobilePhone.allMobilePhone = allMobilePhone;
+	}
+
+	public ArrayList<Contacts> getMyContacts() {
+		return myContacts;
+	}
+
+	public void setMyContacts(ArrayList<Contacts> myContacts) {
+		this.myContacts = myContacts;
+	}
+	
+	public static void addMobilePhone(MobilePhone mobilephone) {
+		MobilePhone.allMobilePhone.add(mobilephone);
+		}
+	
+	
+	
+	
+}
+
+
+
+public class Contacts {
+	private MobilePhone owner;
+	private String contactName;
+	private String contactNumber;
+	
+	public Contacts(MobilePhone owner, String contactName, String contactNumber) {
+		this.owner = owner;
+		this.contactName = contactName;
+		this.contactNumber = contactNumber;
+		owner.addContact(this);
+	}
+
+	public MobilePhone getOwner() {
+		return owner;
+	}
+
+	public void setOwner(MobilePhone owner) {
+		this.owner = owner;
+	}
+
+	public String getContactName() {
+		return contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+	
+	
+	
+	
+}

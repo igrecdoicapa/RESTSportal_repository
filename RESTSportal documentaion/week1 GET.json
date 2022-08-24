@@ -1,0 +1,73 @@
+{
+    "id": 93,
+    "weekNumber": 1,
+    "yearOfWeek": 2022,
+    "schedules": [
+        {
+            "id": 486,
+            "dateSchedule": "2022-01-03",
+            "hourSchedule": "16:00:00",
+            "totalReservations": 30,
+            "availableReservations": 30,
+            "activity": {
+                "id": 41,
+                "name": "fitness",
+                "containedByBundle": false,
+                "validUntil": null
+            }
+        },
+        {
+            "id": 487,
+            "dateSchedule": "2022-01-04",
+            "hourSchedule": "17:00:00",
+            "totalReservations": 30,
+            "availableReservations": 30,
+            "activity": {
+                "id": 41,
+                "name": "fitness",
+                "containedByBundle": false,
+                "validUntil": null
+            }
+        },
+        {
+            "id": 488,
+            "dateSchedule": "2022-01-05",
+            "hourSchedule": "18:00:00",
+            "totalReservations": 30,
+            "availableReservations": 30,
+            "activity": {
+                "id": 41,
+                "name": "fitness",
+                "containedByBundle": false,
+                "validUntil": null
+            }
+        },
+        {
+            "id": 489,
+            "dateSchedule": "2022-01-06",
+            "hourSchedule": "19:00:00",
+            "totalReservations": 30,
+            "availableReservations": 30,
+            "activity": {
+                "id": 41,
+                "name": "fitness",
+                "containedByBundle": false,
+                "validUntil": null
+            }
+        },
+        {
+            "id": 490,
+            "dateSchedule": "2022-01-07",
+            "hourSchedule": "20:30:00",
+            "totalReservations": 30,
+            "availableReservations": 30,
+            "activity": {
+                "id": 41,
+                "name": "fitness",
+                "containedByBundle": false,
+                "validUntil": null
+            }
+        }
+    ],
+    "filePath": null
+}

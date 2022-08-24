@@ -1,0 +1,13 @@
+{
+    "id": 55,
+    "name": "Silver - Update",
+    "activities": [
+        {
+            "id": 42,
+            "name": "Fitness",
+            "containedByBundle": false
+        }
+    ],
+    "users": [],
+    "containedByUser": false
+}

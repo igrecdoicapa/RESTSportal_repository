@@ -1,0 +1,15 @@
+{
+    "id": 61,
+    "userName": "newUser",
+    "firstName": "newUser",
+    "lastName": "newUser",
+    "email": "newUser@newUser.com",
+    "enabled": false,
+    "bundles": [
+        {
+            "id": 54,
+            "name": "Gold"
+        }
+    ],
+    "reservations": []
+}

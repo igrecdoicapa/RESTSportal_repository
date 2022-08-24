@@ -1,0 +1,14 @@
+{
+    "id": 54,
+    "name": "Gold",
+    "activities": [
+        {
+            "id": 42,
+            "name": "Fitness",
+            "containedByBundle": true,
+            "validUntil": "2022-12-25"
+        }
+    ],
+    "users": [],
+    "containedByUser": false
+}
